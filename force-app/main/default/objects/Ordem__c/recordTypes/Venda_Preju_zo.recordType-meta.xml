@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Venda_Preju_zo</fullName>
+    <active>true</active>
+    <label>Venda Prejuízo</label>
+    <picklistValues>
+        <picklist>Status__c</picklist>
+        <values>
+            <fullName>Venda com prejuízo</fullName>
+            <default>true</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Tipo__c</picklist>
+        <values>
+            <fullName>Compra</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Venda</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>
