@@ -1,18 +1,20 @@
 # BootCamp 2.0 Ethos Soluções - Desenvolvedor Salesforce
 
 Objetivo do BootCamp foi apresetar uma nova plataforma de 
-desenvolvimento que está revolucionando o mercado de Tecnologia 
+desenvolvimento que está revolucionando o mercado de Tecnologia, 
+e através de trabalho inteiramente prático criando um App de aplicação e 
+investimentos financeiros em cripto moedas.
 
-## Ferramenta codificação utilizada
+## Ferramenta de codificação utilizada
 
 Visual Studio Code 
 
 ## Linguagens Utilizadas
 
-Apex
-Visualforce
+-Apex
+-Visualforce
 
-## Read All About It
+## Links de Ajuda
 
 - [Salesforce Extensions Documentation](https://developer.salesforce.com/tools/vscode/)
 - [Salesforce CLI Setup Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_intro.htm)
