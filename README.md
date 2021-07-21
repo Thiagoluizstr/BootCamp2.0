@@ -11,8 +11,9 @@ Visual Studio Code
 
 ## Linguagens Utilizadas
 
--Apex
--Visualforce
+- Introdução ao Apex
+
+- Introdução ao Visualforce
 
 ## Links de Ajuda
 
