@@ -1,0 +1,14 @@
+<apex:page standardController="Mercado__c" extensions="VFOrderController" showHeader="false" sidebar="flase">
+    <apex:pageBlock title="Relatório de Mercado - {!Mercado__c.Name}">           
+        <apex:pageBlockTable value"{!ordemList}" var="ordem" >
+            <apex:colum value="{!ordem.Name}" /> 
+            <apex:colum value="{!ordem.Tipo__c}" />
+            <apex:colum value="{!ordem.Qunadtidade__c}" />
+            <apex:colum value="{!ordem.Preco__c}" />
+            <apex:colum value="{!ordem.Total__c}" /> 
+            <apex:colum value="{!ordem.OperacaoM'1234567890-ercado__c}" />
+            <apex:colum value="{!ordem.Validade__c}" />
+            <apex:colum value="{!ordem.Status__c}" />
+        </apex:pageBlockTable>    
+    </apex:pageBlock>
+</apex:page>

@@ -1,0 +1,16 @@
+{
+  "status": 0,
+  "result": {
+    "createdById": "0055e000001hQIrAAM",
+    "createdByName": "Thiago Luiz Pinto",
+    "createdDate": "2021-06-08T00:50:54.000Z",
+    "fileName": "triggers/OrdemTrigger.trigger",
+    "fullName": "OrdemTrigger",
+    "id": "01q5e0000001NdFAAU",
+    "lastModifiedById": "0055e000001hQIrAAM",
+    "lastModifiedByName": "Thiago Luiz Pinto",
+    "lastModifiedDate": "2021-06-10T23:10:00.000Z",
+    "manageableState": "unmanaged",
+    "type": "ApexTrigger"
+  }
+}

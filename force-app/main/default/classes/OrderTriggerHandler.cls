@@ -1,76 +1,33 @@
-public with sharing class OrderTriggerHandler extends TriggerHandler {
-    
-    public OrderTriggerHandler() 
+public with sharing class OrderTriggerHandler extends TriggerHandler
+{
+    public OrderTriggerHandler() {}
+
+    protected override void beforeInsert()
     {
-        
+        for (Ordem__c o : (List<Ordem__c>) trigger.new)
+        {
+            OrderDomain order = new OrderDomain(o);
+            
+            if(order.getTotal() == null) order.recalculaTotal();
+            else order.recalculaQuantidade();
+        }
     }
-
-    protected override void beforeInsert() 
+    protected override void beforeUpdate()
     {
-
-        for(Ordem__c o : (List<Ordem__c>) trigger.new)
+        for (Ordem__c o : (List<Ordem__c>) trigger.new)
         {
-            Ordem__c ordemFoda = o;
-            
-            if(trigger.isInsert)
+            OrderDomain order = new OrderDomain(o);
+            Ordem__c ordemAntiga= (Ordem__c) trigger.oldMap.get(o.id);
+
+            if(order.isFieldDifferent(Schema.Ordem__c.Total__c, ordemAntiga)) 
             {
-                // CALCULAR TOTAL
-                if(ordemFoda.Total__c == null)
-                {
-                    if(ordemFoda.preco__c != null && ordemFoda.Quantidade__c != null)
-                    {
-                        ordemFoda.Total__c = ordemFoda.Quantidade__c * ordemFoda.preco__c;
-                    }
-                    else 
-                    {
-                        ordemFoda.adderror('Os valores de Quantidade e ou Preço não foram preenchidos.');
-                    }
-                }
-                // CALCULAR QUANTIDADE
-                else
-                {
-                    if(ordemFoda.preco__c != null)
-                    {
-                        ordemFoda.Quantidade__c = ordemFoda.Total__c / ordemFoda.preco__c;
-                    }
-                    else 
-                    {
-                        ordemFoda.adderror('Os valores de Total e ou Preço não foram preenchidos.');
-                    }
-                }
+                o.adderror('O total não pode ser alterado manualmente depois que a ordem foi criada');
             }
-        }    
-
-    }
-    
-    protected override void beforeUpdate() {
-
-        for(Ordem__c o : (List<Ordem__c>) trigger.new)
-        {
             
-            Ordem__c ordemFoda = o;
-            Ordem__c ordemRuim = (Ordem__c) trigger.oldMap.get(ordemFoda.id);
-
-            //SE TOTAL FOI ALTERADO EM DISPARIDADE COM O PREÇO E QUANTIDADE
-            if(ordemFoda.Quantidade__c != null && ordemFoda.preco__c != null)
+            if(order.isFieldDifferent(Schema.Ordem__c.quantidade__c, ordemAntiga) || order.isFieldDifferent(Schema.Ordem__c.preco__c, ordemAntiga))
             {
-                if (ordemRuim.Total__c != ordemFoda.Total__c && ordemFoda.Total__c != (ordemFoda.Quantidade__c * ordemFoda.preco__c)) 
-                {
-                    //GERAR MENSAGEM DE ERRO
-                    ordemFoda.adderror('O Total não pode ser alterado manualmente depois que a ordem foi criada.');
-                }
-                //MUDOU QUANTIDADE OU PREÇO
-                if (ordemRuim.Quantidade__c != ordemFoda.Quantidade__c || ordemRuim.preco__c != ordemFoda.preco__c) 
-                {
-                    //RECALCULAR TOTAL
-                    ordemFoda.Total__c = ordemFoda.Quantidade__c * ordemFoda.preco__c;
-                }
-            }
-            else 
-            {
-                ordemFoda.adderror('Os valores de Quantidade e ou Preço não foram preenchidos.');
+                order.recalculaTotal();
             }
         }
-
     }
 }
